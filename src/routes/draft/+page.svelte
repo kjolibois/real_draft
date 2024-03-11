@@ -2,6 +2,7 @@
 <script>
     export let data; // Fetched data from the server
     console.log(data)
+    import { page } from '$app/stores';
     let selectedOption = ''; // Initialize with an empty value
     let isLoading = true; // Initialize as loading
     let newData;
@@ -21,6 +22,10 @@
         console.error('Error fetching results:', error);
     }
     isLoading = false; // Data loaded
+      // Import the page store
+
+
+
 }
 </script>
 
@@ -35,6 +40,7 @@
 {:else}
 
  {#each newData.results as player}
+ {JSON.stringify(player)}
  <p>{player.PLAYER_NAME}</p>
 {/each}
     <!-- Display your table here -->

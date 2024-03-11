@@ -1,0 +1,81 @@
+<!-- my-page.svelte -->
+<script>
+	import { page } from '$app/stores';
+
+	export let data; // Fetched data from the server
+	console.log(data);
+    import YearlyTable from '../../components/YearlyTable.svelte';
+	let selectedOption = ''; // Initialize with an empty value
+	let isLoading = false; // Initialize as loading
+	let newData = data.newData;
+	async function handleSelectChange(event) {
+		selectedOption = event.target.value;
+		console.log(selectedOption);
+	}
+	// Access the employeeId parameter
+	const teamId = $page.params.teamId;
+	const getRowClass = (index) => {
+		return index % 2 === 0 ? 'bg-white' : 'bg-gray-200';
+	};
+	// Function to check if the year is different from the previous player
+	const isDifferentYear = (currentYear, prevYear) => {
+		return currentYear !== prevYear;
+	};
+</script>
+
+<h1>{teamId.toUpperCase()}</h1>
+<!--
+<h1>Select an Option:</h1>
+<select on:change={handleSelectChange}>
+	{#each data.teams as option}
+		<option value={option}>{option}</option>
+	{/each}
+</select>-->
+
+{#if isLoading}
+	<p>Loading...</p>
+{:else}
+	<table>
+		<thead>
+			<!-- Your table header content -->
+			<th>Player Name</th>
+			<th>Pick</th>
+			<th>Draft Round</th>
+			<th>Year Drafted</th>
+		</thead>
+		<tbody>
+			{#each newData.results as player, index}
+				{#if isDifferentYear(player.YEAR_DRAFTED, newData.results[index - 1]?.YEAR_DRAFTED)}
+					<!-- Insert an empty row -->
+					<tr class="empty-row" />
+				{/if}
+				<tr class={getRowClass(index)}>
+					<td>{player.PLAYER_NAME}</td>
+					<td>{player.PICK_OVERALL}</td>
+					<td>{player.DRAFT_ROUND}</td>
+					<td>{player.YEAR_DRAFTED}</td>
+					<!-- Other table cells -->
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+	<!-- Display your table here -->
+{/if}
+
+<!-- Display results table here -->
+<!-- YourTable.svelte -->
+
+<style>
+	.bg-white {
+		background-color: white;
+	}
+
+	.bg-gray-200 {
+		background-color: #f4f4f4;
+	}
+	.empty-row {
+		height: 20px;
+	}
+
+	/* Add other styling for your table rows here */
+</style>
