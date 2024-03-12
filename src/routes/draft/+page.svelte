@@ -4,10 +4,10 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>About this app</h1>
+	<h1>Draft Types</h1>
 
 	<p>
 		<a href="/draft_team"> Drafts by Team</a>
-		<a href="/draft_team"> Drafts by Year</a>
+		<a href="/draft_year"> Drafts by Year</a>
 	</p>
 </div>
