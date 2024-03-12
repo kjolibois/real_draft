@@ -17,7 +17,7 @@
 	<tbody>
 		{#each playerdata as player}
 			<tr>
-				<td>{player.PLAYER_NAME}</td>
+				<td><a href={'/player/' + player.PLAYER_ID}>{player.PLAYER_NAME}</a></td>
 				<td>{player.PICK_OVERALL}</td>
 				<td>{player.DRAFT_ROUND}</td>
 				<td>{draftyear}</td>

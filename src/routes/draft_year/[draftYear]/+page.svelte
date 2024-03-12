@@ -4,7 +4,6 @@
 
 	export let data; // Fetched data from the server
 	console.log(data);
-    import YearlyTable from '../../components/YearlyTable.svelte';
 	let selectedOption = ''; // Initialize with an empty value
 	let isLoading = false; // Initialize as loading
 	let newData = data.newData;
@@ -13,7 +12,7 @@
 		console.log(selectedOption);
 	}
 	// Access the employeeId parameter
-	const teamId = $page.params.teamId;
+	const DraftYearDisplay = $page.params.draftYear;
 	const getRowClass = (index) => {
 		return index % 2 === 0 ? 'bg-white' : 'bg-gray-200';
 	};
@@ -23,7 +22,7 @@
 	};
 </script>
 
-<h1>{teamId.toUpperCase()}</h1>
+<h1>{DraftYearDisplay}</h1>
 <!--
 <h1>Select an Option:</h1>
 <select on:change={handleSelectChange}>
@@ -41,6 +40,7 @@
 			<th>Player Name</th>
 			<th>Pick</th>
 			<th>Draft Round</th>
+			<th> Draft Team</th>
 			<th>Year Drafted</th>
 		</thead>
 		<tbody>
@@ -50,9 +50,10 @@
 					<tr class="empty-row" />
 				{/if}
 				<tr class={getRowClass(index)}>
-					<td>{player.PLAYER_NAME}</td>
+					<td><a href={'/player/' + player.PLAYER_ID}>{player.PLAYER_NAME} </a></td>
 					<td>{player.PICK_OVERALL}</td>
 					<td>{player.DRAFT_ROUND}</td>
+					<td>{player.DRAFT_TEAM}</td>
 					<td>{player.YEAR_DRAFTED}</td>
 					<!-- Other table cells -->
 				</tr>
