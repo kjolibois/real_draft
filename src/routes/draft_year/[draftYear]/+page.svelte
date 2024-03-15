@@ -77,6 +77,16 @@
 	.empty-row {
 		height: 20px;
 	}
+	/* Add these styles for sticky headers */
+	table {
+		position: relative; /* Ensure a positioning context for the sticky header */
+	}
 
+	thead th {
+		position: sticky;
+		top: 0; /* Stick to the top of the viewport */
+		background-color: #fff; /* Ensure a solid background for the header */
+		z-index: 1; /* Keep the header above other content */
+	}
 	/* Add other styling for your table rows here */
 </style>

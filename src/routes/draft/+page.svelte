@@ -9,5 +9,6 @@
 	<p>
 		<a href="/draft_team"> Drafts by Team</a>
 		<a href="/draft_year"> Drafts by Year</a>
+		<a href="/draft_year"> Draft recaps</a>
 	</p>
 </div>

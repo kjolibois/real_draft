@@ -7,15 +7,15 @@ export const load: PageServerLoad = async (event) => {
 
 	let sortedGroups;
 	try {
-		//const response = await fetch(
-		//	`https://data-ball-is-life.c63.workers.dev/api/drafts?team=${event.params.teamId.toUpperCase()}`
-		//);
-		//newData = await response.json();
-		//console.log(newData);
-		// Update data.results with newData
+		const response = await fetch(
+			`https://data-ball-is-life.c63.workers.dev/api/player/${event.params.playerId}`
+		);
+		newData = await response.json();
+		console.log(newData);
+		//Update data.results with newData
 		//data["results"]=newData
 		// ...
-		newData = { id: event.params.playerId, playerName: 'khalil', gp: 5 };
+		//newData = { id: event.params.playerId, playerName: 'khalil', gp: 5 };
 		event.params.playerId;
 		console.log(sortedGroups);
 	} catch (error) {
